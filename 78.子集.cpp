@@ -6,24 +6,23 @@
 
 // @lc code=start
 class Solution {
-   public:
+public:
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
-        vector<int> substr;
-        dfs(ans,nums,substr,0);
+        vector<int> path;
+        dfs(ans,nums,path,0);
         return ans;
-
     }
-    void dfs(vector<vector<int>>& ans,
-             vector<int>& nums,
-             vector<int>& substr,
-             int index) {
-        ans.push_back(substr);
-        for (int i = index; i < nums.size(); i++) {
-            substr.push_back(nums[i]);
-            dfs(ans,nums,substr,i+1);
-            substr.pop_back();
+    void dfs(vector<vector<int>> &ans,vector<int>& nums,vector<int>& path,int index){
+
+        ans.push_back(path);
+        for(int i=index ; i<nums.size(); i++) {
+            path.push_back(nums[i]);
+            dfs(ans,nums,path,i+1);
+            path.pop_back();
         }
     }
+
 };
 // @lc code=end
+

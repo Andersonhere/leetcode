@@ -8,21 +8,21 @@
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
-        vector <string> path;
-        string str;
-        dfs(path,"(",n,n-1,n);
-        return path;
+        vector<string> ans;
+        string path;
+        dfs(ans,path,0,0,n);
+        return ans;
     }
-    void dfs(vector<string> &path,string str,int n,int l,int r) {
-        if (l == 0 && r ==0) {
-            path.push_back(str);
+    void dfs(vector<string>&ans,string path,int left ,int right,int n) {
+        if(left == n && right == n) {
+            ans.push_back(path);
             return ;
         }
-        if (l<n&&l>0) {
-            dfs(path,str + '(',n,l-1,r);
+        if(left<n) {
+            dfs(ans,path+'(',left+1,right,n);
         }
-        if(l<r&&r>0) {
-            dfs(path,str + ')',n, l ,r-1);
+        if(right < left){
+            dfs(ans,path+')',left,right+1,n);
         }
     }
 };
